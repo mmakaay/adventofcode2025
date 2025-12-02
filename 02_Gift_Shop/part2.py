@@ -13,10 +13,11 @@ ranges = [
 ]
 
 # Find invalid numbers.
+HAS_REPEATED_DOUBLES = re.compile(r"^(\d+)\1+$")
 total = 0
 for a, b in ranges:
     while a <= b:
-        if re.match(r"^(\d+)\1+$", str(a)):
+        if HAS_REPEATED_DOUBLES.match(str(a)):
             total += a
         a += 1
 
