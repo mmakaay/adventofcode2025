@@ -2,5 +2,5 @@
 import sys;T=0
 for I in sys.stdin:
  P=str(int(I))
- for k in[2,1]:T+=int(C:=max(A:=P[:len(P)-k+1]))*10**(k-1);P=P[A.index(C)+1:]
+ for k in[1,0]:T+=int(C:=max(A:=P[:len(P)-k]))*10**k;P=P[A.index(C)+1:]
 print(T)
