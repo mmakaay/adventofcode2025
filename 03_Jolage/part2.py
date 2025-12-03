@@ -4,31 +4,30 @@ import sys
 
 total = 0
 
-INCLUDE_BATTERIES = 12
+NUMBER_OF_CELLS = 12
 
-for batteries in map(str.strip, sys.stdin):
-    best_batteries = []
+for cells in map(str.strip, sys.stdin):
+    best_cells = []
 
-    for preserve in range(INCLUDE_BATTERIES, 0, -1):
-        # When we have exactly as many batteries left to inspect,
-        # as the number of batteries that are required, then no
-        # further inspection is required.
-        if preserve == len(batteries):
-            best_batteries.extend(batteries)
+    for todo in range(NUMBER_OF_CELLS, 0, -1):
+        # When we have exactly as many cells left as the number
+        # of cells that are required, then we are done.
+        if todo == len(cells):
+            best_cells.extend(cells)
             break
 
-        # Look at the remaining available batteries in the bank,
-        # disregarding the number of batteries at the end that we
-        # still require to build the full battery pack.
-        applicable_batteries = batteries[:len(batteries)-preserve+1]
-        best_battery = max(applicable_batteries)
-        best_batteries.append(best_battery)
-        earliest_position_for_best_battery = applicable_batteries.index(best_battery)
+        # Look at the remaining available cells in the bank,
+        # disregarding the minimal number of cells at the end
+        # that we still require to build the full battery pack.
+        available_cells = cells[:len(cells)-todo+1]
+        best_cell = max(available_cells)
+        best_cells.append(best_cell)
 
-        # Narrow our view to the batteries that come after the battery that we found.
-        batteries = batteries[earliest_position_for_best_battery + 1:]
+        # Narrow our view to only the cells that follow the cell that we found.
+        position_of_best_cell = available_cells.index(best_cell)
+        cells = cells[position_of_best_cell + 1:]
 
-    joltage = int("".join(best_batteries))
+    joltage = int("".join(best_cells))
     total += joltage
 
 print(total)
