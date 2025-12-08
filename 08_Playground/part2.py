@@ -36,21 +36,25 @@ def create_distance_map(distances):
 
 
 def create_circuit(a, b):
+    # Both strings are already connected to a circuit.
     if a in circuits and b in circuits:
-        # Already in same circuit.
+        # When they are part of the same circuit, no action is needed.
         if circuits[a] == circuits[b]:
             return
 
-        # Connect partial circuits.
+        # Otherwise, put all lights into the same circuit.
         circuit_a = circuits[a]
         circuit_b = circuits[b]
         for n, c in circuits.items():
             if c == circuit_b:
                 circuits[n] = circuit_a
+    # If A is already in a circuit, then connect B to it too.
     elif a in circuits:
         circuits[b] = circuits[a]
+    # If B is already in a circuit, then connect A to it too.
     elif b in circuits:
         circuits[a] = circuits[b]
+    # Both A and B are not in a circuit. Put both in a new circuit.
     else:
         global circuit_id
         circuit_id += 1
