@@ -4,7 +4,6 @@ import sys
 
 # Retrieve the set of red tiles (polygon vertices).
 red_tile_coordinates = [tuple(map(int, line.split(","))) for line in sys.stdin]
-nr_of_red_tiles = len(red_tile_coordinates)
 
 # Rather than computing inside/outside for all grid points (which would
 # require a huge grid due to sparse coordinates), we can use a faster
