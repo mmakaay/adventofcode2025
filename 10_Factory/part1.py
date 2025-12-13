@@ -43,15 +43,14 @@ machines = []
 for line in sys.stdin:
     parts = line.split()
     lights = lights_to_int(parts.pop(0)[1:-1])
-    joltages = parts.pop()[1:-1].split(",")
-    buttons = [buttons_to_int(map(int, p[1:-1].split(","))) for p in parts ]
-    machines.append((lights, buttons, joltages))
+    buttons = [buttons_to_int(map(int, p[1:-1].split(","))) for p in parts]
+    machines.append((lights, buttons))
 
 
 # Start machines.
 total_button_presses = sum(
     start_machine(lights, buttons)
-    for lights, buttons, _
+    for lights, buttons
     in machines
 )
 
