@@ -52,6 +52,7 @@ def is_rectangle_valid(p1, p2):
 
 # Search for the largest possible rectangle.
 best_area = 0
+rectangle = None
 for p1, p2 in [
     (p1, p2)
     for p1 in red_tile_coordinates
@@ -66,5 +67,6 @@ for p1, p2 in [
     # Check if rectangle is valid (no edges cross through it).
     if is_rectangle_valid(p1, p2):
         best_area = area
+        rectangle = (p1, p2)
 
-print(best_area)
+print(best_area, rectangle)
