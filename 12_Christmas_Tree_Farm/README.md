@@ -54,3 +54,6 @@ c) 63-4=59  -> below area 60 -> fail
 **Spoiler:** I coded the solution, and 2 worked
 like a charm for my personal puzzle input.
 
+**Update:** I found that the example requires tolerance 2,
+but that the real puzzle input works with 0 - 458!
+
