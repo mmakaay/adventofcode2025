@@ -172,6 +172,7 @@ def is_rectangle_valid(x1, y1, x2, y2):
 # Getting there! We now have enough building blocks to start our
 # search for the largest possible rectangle.
 best_area = 0
+best_tiles = None
 for i, j in [
     (i, j)
     for i in range(nr_of_red_tiles)
@@ -185,6 +186,8 @@ for i, j in [
     if area <= best_area:
         continue
 
+    tile_description = f"({x1},{y1}) -> ({x2},{y2})"
+
     # Transpose to the compressed grid coordinates.
     x1, y1 = squeezed_x_index[x1], squeezed_y_index[y1]
     x2, y2 = squeezed_x_index[x2], squeezed_y_index[y2]
@@ -196,5 +199,6 @@ for i, j in [
     # Check if rectangle contains only valid tiles.
     if is_rectangle_valid(x1, y1, x2, y2):
         best_area = area
+        best_tiles = tile_description
 
-print(best_area)
+print(best_area, "using", best_tiles)
